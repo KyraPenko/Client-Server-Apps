@@ -43,7 +43,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
         broadcastMessage(clientNick, s);
     }
     
-    //Событие вывода сообщения о смене ник-нейма
+    //Событие вывода сообщения
     public void broadcastMessage(String clientName, String message) {     
         String out = String.format("[%s]: %s\n", clientName, message);
         for (Channel c : channels) {
