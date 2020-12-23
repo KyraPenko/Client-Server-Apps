@@ -42,17 +42,19 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
         }
         broadcastMessage(clientNick, s);
     }
-
-    public void broadcastMessage(String clientName, String message) {     //Событие вывода сообщения о смене ник-нейма
+    
+    //Событие вывода сообщения о смене ник-нейма
+    public void broadcastMessage(String clientName, String message) {     
         String out = String.format("[%s]: %s\n", clientName, message);
         for (Channel c : channels) {
             c.writeAndFlush(out);
         }
     }
 
+    //Событие выхода участника из чата
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception { //Событие, запускаемое при выходе
-        System.out.println("Участник " + clientNick + " вышел из сети");      // участника из чата
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception { 
+        System.out.println("Участник " + clientNick + " вышел из сети");      
         channels.remove(ctx.channel());
         broadcastMessage("SERVER", "Участник " + clientNick + " вышел из сети");
         ctx.close();
