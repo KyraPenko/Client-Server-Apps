@@ -39,7 +39,7 @@ public class Connector {
 
     public void close() {
         channel.close();
-    } // Закрытие канала
+    } 
 
     public void sendMessage(String str) {
         channel.writeAndFlush(str);
