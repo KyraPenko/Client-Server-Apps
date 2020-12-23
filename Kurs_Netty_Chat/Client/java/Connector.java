@@ -43,5 +43,5 @@ public class Connector {
 
     public void sendMessage(String str) {
         channel.writeAndFlush(str);
-    } //Отправка сообщения
+    } 
 }
