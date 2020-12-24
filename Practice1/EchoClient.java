@@ -10,11 +10,11 @@ public class EchoClient {
                     "Usage: java EchoClient <host name> <port number>");
             System.exit(1);
         }
+        Scanner sc = new Scanner(System.in);
 
+        // Шаг 1: Открыть соединение сокета.
         String hostName = args[0];
         int portNumber = Integer.parseInt(args[1]);
-
-        Scanner sc = new Scanner(System.in);
         Socket s = new Socket(hostName, portNumber);
 
         // Шаг 2: Связь - получить поток ввода и вывода
@@ -23,8 +23,6 @@ public class EchoClient {
 
         while (true)
         {
-            // Введите уравнение в форме
-            // "Операция операнда1 Операнд2"
             System.out.print("Enter the equation in the form: ");
             System.out.println("'operand operator operand'");
 
@@ -32,14 +30,9 @@ public class EchoClient {
             if (inp.equals("exit"))
                 break;
 
+            output.writeUTF(inp);  // отправить выражение на сервер
 
-
-            // отправить уравнение на сервер
-            output.writeUTF(inp);
-
-
-
-            // дождемся, пока запрос будет обработан и отправлен обратно клиенту
+            // дождаться, пока запрос будет обработан и отправлен обратно клиенту
             String ans = input.readUTF();
             System.out.println("Answer=" + ans);
 
