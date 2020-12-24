@@ -20,7 +20,7 @@ public class StartServer {
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        protected void initChannel(SocketChannel socketChannel) {
                             socketChannel.pipeline().addLast(new StringDecoder(), new StringEncoder(), new ServerHandler());
                         }
                     });
