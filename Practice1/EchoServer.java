@@ -15,24 +15,23 @@ public class EchoServer {
 
                 ServerSocket serverSocket = new ServerSocket(portNumber);
                 Socket s = serverSocket.accept();
+
                 DataInputStream dis = new DataInputStream(s.getInputStream());
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
             while (true) {
-                // ждать ввода
-                String input = dis.readUTF();
+
+                String input = dis.readUTF(); // ждать ввода
 
                 if (input.equals("exit"))
                     break;
 
-                System.out.println("Equation received:-" + input);
+                System.out.println("Equation received: " + input);
                 int result;
 
-                // Используем StringTokenizer, чтобы разбить уравнение на операнд и
-                // операция
+                // разбить уравнение на операнды и операцию
                 StringTokenizer st = new StringTokenizer(input);
                 int opd1 = Integer.parseInt(st.nextToken());
-
                 String operation = st.nextToken();
                 int opd2 = Integer.parseInt(st.nextToken());
 
@@ -49,8 +48,7 @@ public class EchoServer {
 
                 System.out.println("Sending the result...");
 
-                // отправить результат обратно клиенту.
-                dos.writeUTF(Integer.toString(result));
+                dos.writeUTF(Integer.toString(result));    // отправить результат обратно клиенту
 
             }
         }
