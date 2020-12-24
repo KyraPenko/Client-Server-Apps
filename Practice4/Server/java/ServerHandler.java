@@ -53,7 +53,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception { //Событие, запускаемое при выходе
+    public void channelInactive(ChannelHandlerContext ctx) { //Событие, запускаемое при выходе
         System.out.println("Участник " + clientNick + " вышел из сети");      // участника
         channels.remove(ctx.channel());
         broadcastMessage("SERVER", "Участник " + clientNick + " вышел из сети");
