@@ -22,7 +22,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     // Событие отправки сообщения и смены ник-нейма (команда: "/*/nickchange <Новый ник>")
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) {
         System.out.println("Получено сообщение: " + s);
         if (s.startsWith("/")) {
             if (s.startsWith("/*/nickchange ")) {
