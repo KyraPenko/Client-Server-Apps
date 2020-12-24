@@ -12,7 +12,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     // Событие подключения(добовления) участника
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx) {
         System.out.println("Участник подключился: " + ctx);
         channels.add(ctx.channel());
         clientNick = "Участник " + newClientIndex;
@@ -53,7 +53,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
 
     //Событие выхода участника из чата
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception { 
+    public void channelInactive(ChannelHandlerContext ctx) { 
         System.out.println("Участник " + clientNick + " вышел из сети");      
         channels.remove(ctx.channel());
         broadcastMessage("SERVER", "Участник " + clientNick + " вышел из сети");
